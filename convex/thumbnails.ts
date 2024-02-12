@@ -4,6 +4,9 @@ import { mutation, query } from "./_generated/server";
 export const createThumbnail = mutation({
   args: {
     title: v.string(),
+    aImage: v.string(),
+    bImage: v.string(),
+    profileImage: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const user = await ctx.auth.getUserIdentity();
@@ -15,6 +18,9 @@ export const createThumbnail = mutation({
     await ctx.db.insert("thumbnails", {
       title: args.title,
       userId: user.subject,
+      aImage: args.aImage,
+      bImage: args.bImage,
+      profileImage: args.profileImage || "",
     });
   },
 });

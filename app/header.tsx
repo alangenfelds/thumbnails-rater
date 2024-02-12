@@ -2,17 +2,27 @@
 
 import { ModeToggle } from "@/components/mode-toggle";
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
-import { SignInButton, SignOutButton, useSession } from "@clerk/nextjs";
-import { User2Icon } from "lucide-react";
+import { SignInButton } from "@clerk/nextjs";
+import Link from "next/link";
 import React from "react";
 
 const Header = () => {
-  const { isSignedIn } = useSession();
   return (
     <div className="border-b">
       <div className="h-16 container flex justify-between items-center">
         <div>Thumbnail Rater</div>
-        <div className="flex gap-3 items-center">
+
+        <div>
+          <SignedIn>
+            <Link href="/create">Create Test</Link>
+          </SignedIn>
+          <SignedOut>
+            <Link href="/pricing">Pricing</Link>
+            <Link href="/about">About</Link>
+          </SignedOut>
+        </div>
+
+        <div className="flex gap-4 items-center">
           <SignedIn>
             <UserButton />
           </SignedIn>
