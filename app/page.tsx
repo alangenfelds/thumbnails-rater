@@ -1,7 +1,7 @@
 "use client";
 
 import { api } from "@/convex/_generated/api";
-import { SignInButton, SignOutButton, useSession } from "@clerk/nextjs";
+import { useSession } from "@clerk/nextjs";
 import { useMutation, useQuery } from "convex/react";
 
 export default function Home() {
@@ -13,8 +13,6 @@ export default function Home() {
 
   return (
     <main className="">
-      {isSignedIn ? <SignOutButton /> : <SignInButton />}
-
       {isSignedIn && (
         <form
           onSubmit={async (e) => {
